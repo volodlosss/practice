@@ -1,0 +1,20 @@
+CREATE DATABASE TaskManager;
+GO
+
+USE TaskManager;
+GO
+
+CREATE TABLE Users (
+    Id INT PRIMARY KEY IDENTITY,
+    Username NVARCHAR(50),
+    PasswordHash NVARCHAR(255)
+);
+
+CREATE TABLE Tasks (
+    Id INT PRIMARY KEY IDENTITY,
+    Title NVARCHAR(100),
+    Description NVARCHAR(MAX),
+    CreatedAt DATETIME DEFAULT GETDATE(),
+    Status INT,
+    UserId INT FOREIGN KEY REFERENCES Users(Id)
+);
